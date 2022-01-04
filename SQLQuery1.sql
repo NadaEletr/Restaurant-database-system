@@ -57,3 +57,16 @@ alter column phone char(15)
 
 select * from Waiter;
 
+CREATE TABLE Customer
+(
+  customer_id INT IDENTITY(2000,1) NOT NULL,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  Customer_address VARCHAR(30) NULL,
+  phone char(15) NOt NULL,
+  waiter_id INT NOT NULL,
+  PRIMARY KEY (customer_id),
+  FOREIGN KEY (waiter_id) REFERENCES Waiter(waiter_id)
+);
+
+select * from Customer;
