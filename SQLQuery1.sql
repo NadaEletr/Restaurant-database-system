@@ -127,3 +127,14 @@ CREATE TABLE Meal_Ingredients
 );
 
 select * from Meal_Ingredients;
+
+CREATE TABLE Supplier_Ingredients
+(
+  supplier_id INT NOT NULL,
+  ingredient_id INT NOT NULL,
+  PRIMARY KEY (supplier_id, ingredient_id),
+  FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id),
+  FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
+);
+
+select * from Meal_Ingredients;
