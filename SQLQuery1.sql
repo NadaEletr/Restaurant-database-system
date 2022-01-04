@@ -33,3 +33,27 @@ CREATE TABLE Supplier_phone
 );
 
 select * from Supplier_phone;
+
+
+CREATE TABLE Waiter
+(
+  waiter_id INT IDENTITY(100,1) NOT NULL,
+  Waiter_name VARCHAR(30) NOT NULL,
+  salary INT NOT NULL,
+  phone INT NOT NULL,
+  PRIMARY KEY (waiter_id)
+);  
+
+--DDL
+
+alter table Chef 
+alter column salary NUMERIC(5,3) NOT NULL 
+
+alter table waiter 
+alter column salary NUMERIC(5,3) NOT NULL 
+
+alter table waiter
+alter column phone char(15) 
+
+select * from Waiter;
+
