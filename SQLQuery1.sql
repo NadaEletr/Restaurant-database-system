@@ -104,7 +104,14 @@ CREATE TABLE Orders
   FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
 );
 
+alter table Orders
+drop column order_date ;
+
+alter table Orders
+add  order_date  date ;
+
 select * from Orders;
+
 
 CREATE TABLE Ingredient
 (
