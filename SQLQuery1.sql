@@ -116,3 +116,14 @@ CREATE TABLE Ingredient
 );
 
 select * from Ingredient;
+
+CREATE TABLE Meal_Ingredients
+(
+  meal_id INT NOT NULL,
+  ingredient_id INT NOT NULL,
+  PRIMARY KEY (meal_id, ingredient_id),
+  FOREIGN KEY (meal_id) REFERENCES Meal(meal_id),
+  FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
+);
+
+select * from Meal_Ingredients;
