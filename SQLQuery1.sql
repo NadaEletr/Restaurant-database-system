@@ -12,3 +12,14 @@ CREATE TABLE Chef
 
 select * from chef;
 
+CREATE TABLE Supplier
+(
+  supplier_id INT IDENTITY(1000,1) NOT NULL,
+  supplier_name  VARCHAR(50) NOT NULL,
+  supplier_city VARCHAR(50) check(supplier_city in('Cairo','Roma','Beirut')),
+  chef_id INT NOT NULL,
+  PRIMARY KEY (supplier_id),
+  FOREIGN KEY (chef_id) REFERENCES Chef(chef_id)
+);
+
+select * from Supplier;
