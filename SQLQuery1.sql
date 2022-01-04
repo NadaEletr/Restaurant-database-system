@@ -23,3 +23,13 @@ CREATE TABLE Supplier
 );
 
 select * from Supplier;
+
+CREATE TABLE Supplier_phone
+(
+  phone varchar(255) ,
+  supplier_id INT NOT NULL,
+  PRIMARY KEY (phone, supplier_id),
+  FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id)
+);
+
+select * from Supplier_phone;
