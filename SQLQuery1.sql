@@ -69,4 +69,39 @@ CREATE TABLE Customer
   FOREIGN KEY (waiter_id) REFERENCES Waiter(waiter_id)
 );
 
+
+alter table Customer
+alter column first_name VARCHAR(50) NOT NULL
+
+alter table Customer
+alter column Last_name VARCHAR(50) NOT NULL
+
+alter table Customer
+alter column Customer_address VARCHAR(50) NOT NULL 
+
 select * from Customer;
+
+CREATE TABLE Meal
+(
+  meal_name varchar(255) NOT NULL,
+  meal_id INT IDENTITY(1,1) NOT NULL,
+  price float NOT NULL,
+  chef_id INT NOT NULL,
+  PRIMARY KEY (meal_id),
+  FOREIGN KEY (chef_id) REFERENCES Chef(chef_id)
+);
+
+select * from Meal;
+
+CREATE TABLE Orders
+(
+  order_date INT IDENTITY (10000,1)NOT NULL,
+  order_id INT NOT NULL,
+  meal_id INT NOT NULL,
+  customer_id INT NOT NULL,
+  PRIMARY KEY (order_id),
+  FOREIGN KEY (meal_id) REFERENCES Meal(meal_id),
+  FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+);
+
+select * from Orders;
