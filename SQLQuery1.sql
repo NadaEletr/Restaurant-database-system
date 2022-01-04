@@ -105,3 +105,14 @@ CREATE TABLE Orders
 );
 
 select * from Orders;
+
+CREATE TABLE Ingredient
+(
+  ingredient_id INT IDENTITY (1,1)NOT NULL,
+  ingredient_name varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (ingredient_id)
+);
+
+select * from Ingredient;
