@@ -108,6 +108,23 @@ CREATE TABLE Supplier_Ingredients
   FOREIGN KEY (ingredient_id) REFERENCES Ingredient(ingredient_id)
 );
 
+  --DDL
+
+alter table Chef 
+alter column salary float NOT NULL 
+
+alter table waiter
+alter column phone char(15) 
+
+alter table Supplier 
+alter column chef_id  int NULL ;
+
+alter table Supplier_phone 
+drop column phone;
+
+alter table Supplier_phone 
+alter column phone  char(15) Not Null ;
+
 
 --Chef 
 insert into Chef(chef_name,salary,phone)
@@ -435,40 +452,98 @@ insert into Orders (order_date ,meal_id ,customer_id )
 	   ('2021-01-14',NULL,NULL),
        ('2021-01-12',7,24)
 
-   --DDL
-
-alter table Chef 
-alter column salary float NOT NULL 
-
-
-
-
-
-alter table waiter
-alter column phone char(15) 
-
-alter table Supplier 
-alter column chef_id  int NULL ;
-
-alter table Supplier_phone 
-drop column phone;
-
-alter table Supplier_phone 
-alter column phone  char(15) Not Null ;
-
-
-
-
+ 
 
 --SELECT 
 
 select * from chef;
 select * from Supplier;
 select * from Supplier_phone;
-select * from Meal;
 select * from Ingredient;
 select * from Supplier_Ingredients;
 select * from Waiter;
 select * from Customer;
-select * from Meal_Ingredients;
 select * from Orders;
+select * from Meal;
+select * from Meal_Ingredients;
+
+
+
+select * from Chef where salary >2000; -- salaries above 2000
+select * from supplier where supplier_city = 'Cairo'; -- city is cairo
+select * from orders where order_date between '2021-01-03' and '2021-01-05';
+
+select distinct supplier_city from supplier;
+select distinct idescription ,quantity  from Ingredient where quantity= 100 or quantity=50;
+
+select * from customer where first_name like 'a%' ;
+select * from customer where first_name like '%e%' ;
+select * from waiter where waiter_name like '_e%' ;
+
+select meal_id , meal_name, price from meal order by price ASC;
+select meal_id , meal_name, price from meal order by price DESC;
+
+select  count(*) as total_ingredients from Ingredient where idescription= 'vegtables' group by idescription; --types of vegtables
+select avg(salary) as average_salary from chef;
+select  Idescription,count(*) as type_of_ingredients,sum(quantity) as sum_quantity from Ingredient group by Idescription having  sum(quantity) <1000;
+select max(salary) as max_salary, min(salary) as min_salary from waiter ;
+select Supplier_city , count (*) as number_of_supplier from supplier group by supplier_city; 
+
+
+select first_name , last_name , order_date, order_id 
+from Customer c inner join Orders o
+on c.customer_id = o.customer_id; -- all customers had orders
+
+select c.first_name , c.last_name , o.order_date, o.order_id, c.Customer_address 
+from Customer c left outer join Orders o
+on c.customer_id = o.customer_id
+order by c.customer_id DESC; -- all customers that ordered an order or customers that don't have an order
+
+select c.first_name , c.last_name , o.order_date, o.order_id, c.Customer_address 
+from Customer c left outer join Orders o
+on c.customer_id = o.customer_id
+where o.customer_id is null; -- all customers that don't have an order;
+
+select c.first_name , c.last_name , o.order_date, o.order_id, c.Customer_address 
+from Customer c right outer join Orders o
+on c.customer_id = o.customer_id; -- all customers that ordered an order or customers cancelled an order
+
+select c.chef_name , c.chef_id , s.supplier_name ,s.supplier_id 
+from chef c full outer join Supplier s 
+on  c.chef_id =s.chef_id;--all
+
+select first_name+' '+last_name as customer_name , order_id , order_date , meal_name
+from Customer c join orders o on c.customer_id = o.customer_id
+join meal m on o.meal_id = m.meal_id; -- all meals that are ordered by customers 
+
+select top 3 chef_name , salary
+from chef 
+order by salary DESC;
+
+select top 50 percent chef_name , salary
+from chef 
+order by salary ASC;
+
+select  chef_name ,  chef_id , salary
+from chef where chef_id in (select chef_id from meal where price>100 group by chef_id );-- all chefs made meals above 100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
