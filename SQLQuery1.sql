@@ -527,6 +527,27 @@ order by salary ASC;
 select  chef_name ,  chef_id , salary
 from chef where chef_id in (select chef_id from meal where price>100 group by chef_id );-- all chefs made meals above 100
 
+--view 
+create view v_chef_info
+as
+select chef_name , salary from chef 
+select * from v_chef_info;
+
+
+select chef_name from v_chef_info 
+where salary>500;
+
+create view customer_having_orders
+as
+select first_name , last_name , order_date, order_id 
+from Customer c inner join Orders o
+on c.customer_id = o.customer_id;
+select * from customer_having_orders;
+
+alter view customer_having_orders as select * from customer
+insert into customer_having_orders 
+Values ('ahmed','yasser','2021-01-09',2034)
+
 
 
 
